@@ -28,6 +28,16 @@
     .featured-body { padding: 20px; }
     .featured-actions { margin-top: 10px; }
     .tag { display: inline-block; padding: 3px 8px; border: 1px solid #ddd; border-radius: 12px; margin-right: 6px; font-size: 12px; }
+
+    /* Profile picture styling */
+    .profile-pic {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
   </style>
 </head>
 
@@ -62,30 +72,41 @@
 </nav>
 
 <section id="home" class="jumbotron" style="margin-bottom:0;">
-  <div class="container text-center">
-    <h1>Eduardo Ribeiro</h1>
-    <p>Hydrographic / Geospatial | GIS | Python | Sonar data</p>
-    <p>
-      <a class="btn btn-primary btn-lg" href="#work">See my work</a>
-    </p>
+  <div class="container">
+    <div class="row" style="display:flex; align-items:center; flex-wrap:wrap;">
+
+      <div class="col-sm-3 text-center">
+        <img src="images/profilepic.jpg" class="profile-pic img-responsive center-block" alt="Eduardo Ribeiro">
+      </div>
+
+      <div class="col-sm-9 text-left">
+        <h1 style="margin-top:0;">Eduardo Ribeiro</h1>
+        <p>Oceanography | GIS | Python </p>
+        <p>
+          <a class="btn btn-primary btn-lg" href="#work">See my work</a>
+        </p>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <section id="about" class="container text-left">
   <h2>About</h2>
   <p>
-    Hello there! My name is Eduardo and I am a marine data processor and GIS enthusiast.
-    I recently started getting tired of following the same workflows over and over on GIS and other offshore software,
-    so I started to learn some extra tools such as postgresql and python to make my life easier.
-    I tend to brainstorm by myself and come up with some ideas on how to apply the things I have learned,
-    so I guess this repository is exactly that.
+    Hello there! My name is Eduardo and I am a Geologist who is just really excited about spatial data and experimenting around.
+    I studied Geology for my bachelors degree, and during my Masters I decided to focus on seismic processing and interpretation,
+    this took me down the rabbit hole and for the last 3 years I have been working as a Marine Data Processor.
   </p>
+    I have been working extensively with GIS and recently took on myself to learn SQL and Python. This portfolio is mostly a sandbox for me to save any ideas that I
+  might have had, so feel free to take a gander and if you have any questions or ideas, my email is bellow.
+  <p/>
 </section>
 
 <section id="work" class="container-fluid text-center" style="background:#fafafa;">
   <div class="featured-wrap">
-    <h2>Featured Project</h2>
-    <p class="text-muted">A deeper look at one complete workflow (data → processing → results).</p>
+    <h2>Deriving Sound Speed in water by using CTD profiles</h2>
+    <p class="text-muted">Testing some SQL workflows, coupled with Python and GIS</p>
     <br>
 
     <div class="featured-card text-left">
@@ -103,14 +124,12 @@
           <span class="tag">CTD</span>
           <span class="tag">Sound Speed</span>
           <span class="tag">GIS</span>
+          <span class="tag">Oceanography</span>
         </div>
 
-        <div class="featured-actions">
-          <a class="btn btn-primary" href="project1.html">
-            View workflow
-          </a>
-          <a class="btn btn-default" href="https://github.com/YOURUSERNAME/YOURREPO" target="_blank">
-            Repo
+        <div class="featured-actions text-center">
+          <a class="btn btn-primary btn-lg" href="project1.html">
+            Click for Details
           </a>
         </div>
       </div>
