@@ -38,6 +38,20 @@
       border: 4px solid #fff;
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
+
+    .featured-card {
+  margin-bottom: 30px;
+  height: 100%;
+}
+
+.featured-body {
+  padding: 15px;
+}
+
+.featured-img {
+  max-height: 240px;
+  object-fit: cover;
+}
   </style>
 </head>
 
@@ -104,36 +118,77 @@
 </section>
 
 <section id="work" class="container-fluid text-center" style="background:#fafafa;">
-  <div class="featured-wrap">
-    <h2>Deriving Sound Speed in water by using CTD profiles</h2>
-    <p class="text-muted">Testing some SQL workflows, coupled with Python and GIS</p>
+  <div class="container">
+    <h2>Projects</h2>
+    <p class="text-muted">Python • GIS • Oceanography</p>
     <br>
 
-    <div class="featured-card text-left">
-      <img src="images/UNESCO_Derived.jpeg" class="featured-img img-responsive" alt="CTD derived sound speed map">
+    <div class="row">
 
-      <div class="featured-body">
-        <h3 style="margin-top:0;">Deriving Sound Speed from Open-Source CTD Profiles</h3>
-        <p>
-          Small individual project using open-source CTD data in California. I compare sound-speed equations
-          and generate mapped outputs for analysis and visualization.
-        </p>
+      <!-- Project 1 -->
+      <div class="col-sm-6">
+        <div class="featured-card text-left">
+          <img src="images/UNESCO_Derived.jpeg"
+               class="featured-img img-responsive"
+               alt="CTD derived sound speed map">
 
-        <div style="margin-bottom:10px;">
-          <span class="tag">Python</span>
-          <span class="tag">CTD</span>
-          <span class="tag">Sound Speed</span>
-          <span class="tag">GIS</span>
-          <span class="tag">Oceanography</span>
-        </div>
+          <div class="featured-body">
+            <h3 style="margin-top:0;">Deriving Sound Speed from CTD Profiles</h3>
 
-        <div class="featured-actions text-center">
-          <a class="btn btn-primary btn-lg" href="P0001_CTD_Derived_Speed.html">
-            Click for Details
-          </a>
+            <p>
+              Compare multiple sound-speed equations and generate mapped outputs
+              from open-source CTD data.
+            </p>
+
+            <div style="margin-bottom:10px;">
+              <span class="tag">Python</span>
+              <span class="tag">CTD</span>
+              <span class="tag">GIS</span>
+              <span class="tag">Oceanography</span>
+            </div>
+
+            <div class="featured-actions text-center">
+              <a class="btn btn-primary" href="P0001_CTD_Derived_Speed.html">
+                Details
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Project 2 -->
+      <div class="col-sm-6">
+        <div class="featured-card text-left">
+          <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Mackenzie_cast_2107_001d.png"
+               class="featured-img img-responsive"
+               alt="Ray tracing from sound speed profiles">
+
+          <div class="featured-body">
+            <h3 style="margin-top:0;">Computing Ray Paths from Sound Speed Profiles</h3>
+
+            <p>
+              Visualizing sound wave refraction by using Snell's Law and derived sound speed profiles.
+            </p>
+
+            <div style="margin-bottom:10px;">
+              <span class="tag">Python</span>
+              <span class="tag">Ray Tracing</span>
+              <span class="tag">Refraction</span>
+              <span class="tag">Hydrography</span>
+            </div>
+
+            <div class="featured-actions text-center">
+              <a class="btn btn-primary" href="P002_WavePath.html">
+                Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+</section>
 
   </div>
 </section>

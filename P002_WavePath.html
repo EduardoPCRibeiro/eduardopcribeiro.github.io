@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Project 1 | CTD Sound Speed Workflow</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 3 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery + Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <!-- Prism syntax highlighting (CSS + JS) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+  <!-- Optional better font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --soft: #f8fafc;
+      --shadow: 0 8px 24px rgba(0,0,0,.06);
+    }
+
+    body{
+      padding-top: 70px;
+      color: var(--text);
+      background: var(--bg);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container{ max-width: 980px; }
+
+    section{ padding: 28px 0; }
+    p{ margin: 0 0 10px; }
+    ul{ margin-bottom: 10px; }
+    hr{ border-top: 1px solid var(--border); margin: 24px 0; }
+
+    h1{ font-weight: 700; letter-spacing: -0.02em; margin: 0 0 6px; }
+    h2{ font-weight: 700; margin-top: 10px; padding-top: 6px; }
+    h3{ font-weight: 700; margin-top: 0; }
+
+    .muted{ color: var(--muted); }
+
+    .hero-img{
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    /* Steps */
+    .steps{ counter-reset: step; }
+    .step{
+      counter-increment: step;
+      margin-bottom: 22px;
+      padding: 18px 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,.03);
+    }
+    .step h3:before{
+      content: counter(step) ") ";
+      font-weight: 800;
+      color: #111827;
+    }
+
+    /* Collapsible code */
+    .code-toggle summary{
+      cursor: pointer;
+      font-weight: 700;
+      margin: 8px 0;
+      outline: none;
+      color: #111827;
+    }
+    .code-toggle[open] summary{ margin-bottom: 10px; }
+
+    pre[class*="language-"]{
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      overflow-x: auto;
+      margin: 10px 0 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.6);
+    }
+
+    .explain{
+      background: var(--soft);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 10px;
+    }
+    .explain .title{
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .explain ul{ margin-bottom: 0; }
+
+    /* Image grid */
+    .map-grid .thumb{
+      margin-bottom: 10px;
+      cursor: zoom-in;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .map-grid .thumb:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.10);
+    }
+    .figcap{ margin: 6px 0 0; font-size: 12.5px; }
+
+    /* Panel polish */
+    .panel{
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 14px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+    .panel-default > .panel-heading{
+      background: var(--soft);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Navbar */
+    .navbar-inverse{
+      background: #111827;
+      border-color: #111827;
+    }
+    .navbar-inverse .navbar-brand,
+    .navbar-inverse .navbar-nav>li>a{
+      color: #e5e7eb;
+    }
+    .navbar-inverse .navbar-nav>li>a:hover{
+      color: #ffffff;
+    }
+
+    footer{
+      background: var(--soft);
+      border-top: 1px solid var(--border);
+      padding: 18px;
+      margin-top: 22px;
+    }
+
+    /* Modal */
+    #imgModal .modal-dialog{
+      width: 95%;
+      max-width: 1100px;
+    }
+    #imgModal .modal-content{
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    #imgModal .modal-header{
+      border-bottom: 1px solid var(--border);
+      background: var(--soft);
+    }
+    #imgModalImg{
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    #imgModalCaption{
+      margin-top: 10px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="./index.html">← Back</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="https://github.com/YOURUSERNAME/YOURREPO" target="_blank" rel="noopener">Repo</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="container">
+  <h1>Computing Ray Paths from Sound Speed Profiles</h1>
+  <p class="muted">Tools: Python • QGIS • Geophysics</p>
+
+  <img
+    src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Mackenzie_cast_2107_001d.png"
+    class="img-responsive hero-img"
+    alt="Ray tracing overview">
+
+  <!-- Quick facts -->
+  <div class="row" style="margin-top:18px;">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>What this shows</strong></div>
+        <div class="panel-body">
+          Sound waves bending with depth.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Inputs</strong></div>
+        <div class="panel-body">
+          Sound speed derived from CTD casts. Initial beam angles.
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>Outputs</strong></div>
+        <div class="panel-body">
+          Ray paths plot and summary stats (range, min/max speed).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 id="importance">Importance of Ray Tracing in Bathymetric Surveys</h2>
+
+  <p>
+    According to Snell’s Law, the path a wave follows through a layered medium depends on:
+  </p>
+  <ul>
+    <li>Sound speed</li>
+    <li>Angle of transmission</li>
+  </ul>
+
+  <p>
+    This matters for oceanographic and hydrographic work because refraction changes the true ray path.
+    If ray-tracing assumptions are wrong (sound speed profile, angle conventions, layer model), depth estimates can be biased.
+  </p>
+
+  <hr>
+
+  <h2 id="workflow">Workflow</h2>
+
+  <p>
+    Using sound-speed values calculated in the previous project, I wrote a Python script that applies Snell’s Law across layers
+    for several beam angles.
+  </p>
+
+  <p><strong>Why different beam angles?</strong></p>
+  <p>
+    Beams travel the shortest distance near nadir. As the beam angle increases, the slant range increases, which increases time in-water.
+    Longer time in-water increases the influence of refraction and can introduce larger depth errors if not modeled correctly.
+  </p>
+
+  <!-- Pipeline overview -->
+  <div class="row" style="margin:10px 0 0;">
+    <div class="col-sm-4">
+      <div class="explain">
+        <div class="title">1) Compute</div>
+        <ul>
+          <li>New angle with each sound speed measurement</li>
+          <li>Ray path geometry</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="explain">
+        <div class="title">2) Generate</div>
+        <ul>
+          <li>Ray trace plots</li>
+          <li>Statistical values</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="explain">
+        <div class="title">3) Weak points</div>
+        <ul>
+          <li>Cannot apply to bathymetry to check results</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="steps">
+
+    <div class="step" id="snell">
+      <h3>Snell’s Law</h3>
+      <p class="muted" style="margin-top:-6px;">Theory</p>
+
+      <p>
+        Snell’s Law describes refraction when a wave travels between layers with different sound speeds.
+        In underwater acoustics, a common form is:
+      </p>
+
+      <p class="text-center" style="font-size:18px; margin:20px 0;">
+        <strong>sin(θ₁) / c₁ = sin(θ₂) / c₂ = constant</strong>
+      </p>
+
+      <p>Where:</p>
+      <ul>
+        <li><strong>θ</strong> = ray angle relative to the vertical</li>
+        <li><strong>c</strong> = sound speed in the layer</li>
+      </ul>
+
+      <p>
+        If <strong>c₁</strong>, <strong>c₂</strong>, and the initial beam angle <strong>θ₁</strong> are known, Snell’s Law yields <strong>θ₂</strong>.
+        Repeating this layer-by-layer builds the full ray path.
+      </p>
+
+
+    </div>
+
+    <div class="step" id="interpolation">
+      <h3>Ray Trace Plots</h3>
+      <p class="muted" style="margin-top:-6px;">Results</p>
+
+      <p>
+        As predicted, outer beams are influenced the most by different sound speeds in the medium, with a clear bend downwards.
+        In typical bathymetric surveys, it’s often the outer beams that contribute most to uncertainty.
+      </p>
+
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <strong>Ray trace plotting</strong>
+        </div>
+
+        <div class="panel-body">
+          <p class="text-center muted" style="margin-bottom: 15px;">
+            Comparison between UNESCO, Del Grosso, Leroy, and Mackenzie ray tracing results
+          </p>
+
+          <div class="row map-grid">
+
+            <div class="col-sm-6">
+              <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_DelGrosso_cast_2107_001d.png"
+                   class="img-responsive thumb"
+                   alt="Ray trace plot from Del Grosso sound speed"
+                   data-title="Ray trace plot from Del Grosso sound speed"
+                   onclick="openImgModal(this)">
+              <p class="text-center muted figcap">Ray trace plot from Del Grosso sound speed</p>
+            </div>
+
+            <div class="col-sm-6">
+              <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Leroy2008_cast_2107_001d.png"
+                   class="img-responsive thumb"
+                   alt="Ray trace plot from Leroy sound speed"
+                   data-title="Ray trace plot from Leroy sound speed"
+                   onclick="openImgModal(this)">
+              <p class="text-center muted figcap">Ray trace plot from Leroy sound speed</p>
+            </div>
+
+            <div class="clearfix visible-sm-block visible-md-block visible-lg-block"></div>
+
+            <div class="col-sm-6">
+              <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_UNESCO_cast_2107_001d.png"
+                   class="img-responsive thumb"
+                   alt="Ray trace plot from UNESCO sound speed"
+                   data-title="Ray trace plot from UNESCO sound speed"
+                   onclick="openImgModal(this)">
+              <p class="text-center muted figcap">Ray trace plot from UNESCO sound speed</p>
+            </div>
+
+            <div class="col-sm-6">
+              <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Mackenzie_cast_2107_001d.png"
+                   class="img-responsive thumb"
+                   alt="Ray trace plot from Mackenzie sound speed"
+                   data-title="Ray trace plot from Mackenzie sound speed"
+                   onclick="openImgModal(this)">
+              <p class="text-center muted figcap">Ray trace plot from Mackenzie sound speed</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step" id="results">
+      <h3>Results & QC</h3>
+      <p class="muted" style="margin-top:-6px;">Interpretation and further work</p>
+
+      <p>
+        Results show very small variations in sound speed, which is expected for shallow environments
+        (50 meters for this specific CTD cast).
+      </p>
+
+      <ul>
+        <li><strong>UNESCO:</strong> 1492.7–1526.6 m/s</li>
+        <li><strong>Mackenzie:</strong> 1492.7–1526.6 m/s</li>
+        <li><strong>Leroy 2008:</strong> 1492.7–1526.7 m/s</li>
+      </ul>
+
+      <p>
+        While the Del Grosso algorithm is returning values with what seems like a consistent offset:
+      </p>
+
+      <ul>
+        <li><strong>Initial speed:</strong> 1488.2 m/s</li>
+        <li><strong>Min speed:</strong> 1450.9 m/s</li>
+        <li><strong>Max speed:</strong> 1488.3 m/s</li>
+      </ul>
+
+      <p>
+        This is around 38 m/s slower than the other algorithms, which suggests the Del Grosso implementation may have a unit/constant issue.
+      </p>
+
+      <p>
+        As an exercise, it’s useful to visualize how rays behave with different sound speeds.
+        Next improvements could include: Snell invariant checks, surface/bottom reflections, and moving to a 2D/3D speed field.
+      </p>
+
+      <p>
+        Even better would be comparing these results inside a hydrographic workflow using SVP casts applied to real bathymetry.
+      </p>
+    </div>
+
+  </div><!-- /.steps -->
+
+</section><!-- /.container section -->
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 muted">
+        © <span id="year"></span> • CTD Ray Tracing Project
+      </div>
+      <div class="col-sm-4 text-right">
+        <a href="./index.html">Back to index</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Image Modal (required for your openImgModal JS) -->
+<div id="imgModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="imgModalLabel">Figure</h4>
+      </div>
+
+      <div class="modal-body">
+        <img id="imgModalImg" src="" alt="Expanded figure">
+        <p id="imgModalCaption" class="muted"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Footer year
+  (function () {
+    var y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
+  })();
+
+  // Image modal
+  function openImgModal(imgEl) {
+    var src = imgEl.getAttribute("src");
+    var title = imgEl.getAttribute("data-title") || imgEl.getAttribute("alt") || "Figure";
+
+    document.getElementById("imgModalImg").src = src;
+    document.getElementById("imgModalLabel").textContent = title;
+    document.getElementById("imgModalCaption").textContent = title;
+
+    $('#imgModal').modal('show');
+  }
+</script>
+
+</body>
+</html>
