@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Bootstrap 3 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -23,11 +24,31 @@
       overflow: hidden;
       background: #fff;
       box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
-    .featured-img { width: 100%; }
-    .featured-body { padding: 20px; }
-    .featured-actions { margin-top: 10px; }
-    .tag { display: inline-block; padding: 3px 8px; border: 1px solid #ddd; border-radius: 12px; margin-right: 6px; font-size: 12px; }
+    .featured-img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+    }
+    .featured-body {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .featured-actions { margin-top: auto; padding-top: 10px; }
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-right: 6px;
+      font-size: 12px;
+    }
 
     /* Profile picture styling */
     .profile-pic {
@@ -39,165 +60,168 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
 
-    .featured-card {
-  margin-bottom: 30px;
-  height: 100%;
-}
-
-.featured-body {
-  padding: 15px;
-}
-
-.featured-img {
-  max-height: 240px;
-  object-fit: cover;
-}
+    /* Mobile tweaks (Bootstrap 3 is not flex-first) */
+    @media (max-width: 767px) {
+      section { padding: 40px 0; }
+      .jumbotron .row { display: block !important; }
+      .profile-pic { margin-bottom: 15px; }
+    }
   </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#home">Portfolio</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#home">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://github.com/YOURUSERNAME" target="_blank">
-          <span class="glyphicon glyphicon-link"></span> GitHub
-        </a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<section id="home" class="jumbotron" style="margin-bottom:0;">
-  <div class="container">
-    <div class="row" style="display:flex; align-items:center; flex-wrap:wrap;">
-
-      <div class="col-sm-3 text-center">
-        <img src="images/profilepic.jpg" class="profile-pic img-responsive center-block" alt="Eduardo Ribeiro">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#home">Portfolio</a>
       </div>
 
-      <div class="col-sm-9 text-left">
-        <h1 style="margin-top:0;">Eduardo Ribeiro</h1>
-        <p>Oceanography | GIS | Python </p>
-        <p>
-          <a class="btn btn-primary btn-lg" href="#work">See my work</a>
-        </p>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#home">Home</a></li>
+          <!-- Single-page approach: About jumps to section on this page -->
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener">
+              <span class="glyphicon glyphicon-link"></span> GitHub
+            </a>
+          </li>
+        </ul>
       </div>
-
     </div>
-  </div>
-</section>
+  </nav>
 
-<section id="about" class="container text-left">
-  <h2>Intro</h2>
-  <p>
-    Hello there! My name is Eduardo and I am a Geologist who is just really excited about spatial data and experimenting around.
-    I studied Geology for my bachelors degree, and during my Masters I decided to focus on seismic processing and interpretation,
-    this took me down the rabbit hole and for the last 3 years I have been working as a Marine Data Processor.
-  </p>
-    I have been working extensively with GIS and recently took on myself to learn SQL and Python. This portfolio is mostly a sandbox for me to save any ideas that I
-  might have had, so feel free to take a gander and if you have any questions or ideas, my email is bellow.
-  <p/>
-</section>
+  <section id="home" class="jumbotron" style="margin-bottom:0;">
+    <div class="container">
+      <div class="row" style="display:flex; align-items:center; flex-wrap:wrap;">
 
-<section id="work" class="container-fluid text-center" style="background:#fafafa;">
-  <div class="container">
-    <h2>Projects</h2>
-    <p class="text-muted">Python • GIS • Oceanography</p>
-    <br>
+        <div class="col-sm-3 text-center">
+          <img src="images/profilepic.jpg"
+               class="profile-pic img-responsive center-block"
+               alt="Eduardo Ribeiro">
+        </div>
 
-    <div class="row">
+        <div class="col-sm-9 text-left">
+          <h1 style="margin-top:0;">Eduardo Ribeiro</h1>
+          <p>Oceanography | GIS | Python</p>
+          <p>
+            <a class="btn btn-primary btn-lg" href="#work">See my work</a>
+          </p>
+        </div>
 
-      <!-- Project 1 -->
-      <div class="col-sm-6">
-        <div class="featured-card text-left">
-          <img src="images/UNESCO_Derived.jpeg"
-               class="featured-img img-responsive"
-               alt="CTD derived sound speed map">
+      </div>
+    </div>
+  </section>
 
-          <div class="featured-body">
-            <h3 style="margin-top:0;">Deriving Sound Speed from CTD Profiles</h3>
+  <section id="about" class="container text-left">
+    <h2>Intro</h2>
 
-            <p>
-              Compare multiple sound-speed equations and generate mapped outputs
-              from open-source CTD data.
-            </p>
+    <p>
+      Hello there! My name is Eduardo and I am a Geologist who is just really excited about spatial data and experimenting around.
+      I studied Geology for my bachelors degree, and during my Masters I decided to focus on seismic processing and interpretation.
+      This took me down the rabbit hole and for the last 3 years I have been working as a Marine Data Processor.
+    </p>
 
-            <div style="margin-bottom:10px;">
-              <span class="tag">Python</span>
-              <span class="tag">CTD</span>
-              <span class="tag">GIS</span>
-              <span class="tag">Oceanography</span>
-            </div>
+    <p>
+      I have been working extensively with GIS and recently took on myself to learn SQL and Python. This portfolio is mostly a sandbox
+      for me to save any ideas that I might have had, so feel free to take a gander—and if you have any questions or ideas, my email is below.
+    </p>
+  </section>
 
-            <div class="featured-actions text-center">
-              <a class="btn btn-primary" href="P0001_CTD_Derived_Speed.html">
-                Details
-              </a>
+  <section id="work" class="container-fluid text-center" style="background:#fafafa;">
+    <div class="container">
+      <h2>Projects</h2>
+      <p class="text-muted">Python • GIS • Oceanography</p>
+      <br>
+
+      <div class="row">
+
+        <!-- Project 1 -->
+        <div class="col-sm-6">
+          <div class="featured-card text-left">
+            <img src="images/UNESCO_Derived.jpeg"
+                 class="featured-img img-responsive"
+                 alt="CTD derived sound speed map">
+
+            <div class="featured-body">
+              <h3 style="margin-top:0;">Deriving Sound Speed from CTD Profiles</h3>
+
+              <p>
+                Compare multiple sound-speed equations and generate mapped outputs
+                from open-source CTD data.
+              </p>
+
+              <div style="margin-bottom:10px;">
+                <span class="tag">Python</span>
+                <span class="tag">CTD</span>
+                <span class="tag">GIS</span>
+                <span class="tag">Oceanography</span>
+              </div>
+
+              <div class="featured-actions text-center">
+                <a class="btn btn-primary" href="P0001_CTD_Derived_Speed.html">Details</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Project 2 -->
-      <div class="col-sm-6">
-        <div class="featured-card text-left">
-          <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Mackenzie_cast_2107_001d.png"
-               class="featured-img img-responsive"
-               alt="Ray tracing from sound speed profiles">
+        <!-- Project 2 -->
+        <div class="col-sm-6">
+          <div class="featured-card text-left">
+            <img src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Mackenzie_cast_2107_001d.png"
+                 class="featured-img img-responsive"
+                 alt="Ray tracing from sound speed profiles">
 
-          <div class="featured-body">
-            <h3 style="margin-top:0;">Computing Ray Paths from Sound Speed Profiles</h3>
+            <div class="featured-body">
+              <h3 style="margin-top:0;">Computing Ray Paths from Sound Speed Profiles</h3>
 
-            <p>
-              Visualizing sound wave refraction by using Snell's Law and derived sound speed profiles.
-            </p>
+              <p>
+                Visualizing sound wave refraction by using Snell's Law and derived sound speed profiles.
+              </p>
 
-            <div style="margin-bottom:10px;">
-              <span class="tag">Python</span>
-              <span class="tag">Ray Tracing</span>
-              <span class="tag">Refraction</span>
-              <span class="tag">Hydrography</span>
-            </div>
+              <div style="margin-bottom:10px;">
+                <span class="tag">Python</span>
+                <span class="tag">Ray Tracing</span>
+                <span class="tag">Refraction</span>
+                <span class="tag">Hydrography</span>
+              </div>
 
-            <div class="featured-actions text-center">
-              <a class="btn btn-primary" href="P002_WavePath.html">
-                Details
-              </a>
+              <div class="featured-actions text-center">
+                <a class="btn btn-primary" href="P002_WavePath.html">Details</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
-  </div>
-</section>
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+  </section>
 
-  </div>
-</section>
+  <section id="contact" class="container text-center">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:ribeiroeduardopaulo@gmail.com">ribeiroeduardopaulo@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/eduardoribeirogeo/" target="_blank" rel="noopener">eduardoribeirogeo</a></p>
+  </section>
 
-<section id="contact" class="container text-center">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:ribeiroeduardopaulo@gmail.com">ribeiroeduardopaulo@gmail.com</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/eduardoribeirogeo/" target="_blank">eduardoribeirogeo</a></p>
-</section>
+  <footer class="container-fluid text-center">
+    <p>© <span id="year"></span> Eduardo Ribeiro</p>
+  </footer>
+
+  <script>
+    // Tiny footer convenience
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
