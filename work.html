@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Eduardo Ribeiro | About</title>
+  <title>Eduardo Ribeiro | Work</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      --page-pad: 24px; /* shared left padding for header + content */
+      --page-pad: 24px; /* shared left padding for header + cards */
     }
 
     html, body {
@@ -38,7 +38,7 @@
       position: relative;
     }
 
-    /* Subtle noise texture overlay */
+    /* Subtle noise texture */
     body::before {
       content: "";
       position: fixed;
@@ -54,7 +54,7 @@
 
     .navbar { margin-bottom: 0; border-radius: 0; }
 
-    /* ===== FULL WIDTH HEADER (same as Work page) ===== */
+    /* ===== FULL WIDTH HEADER ===== */
     .jumbotron.full-header {
       margin: 0;
       padding: 40px 0 22px 0;
@@ -71,19 +71,21 @@
       line-height: 1.1;
     }
 
+    /* Animate line in + glow */
     @keyframes lineIn {
       from { transform: scaleX(0); opacity: 0; }
       to   { transform: scaleX(1); opacity: 1; }
     }
 
+    /* The main underline (thin, extends to right edge, fades at end) */
     .jumbotron.full-header h1::after {
       content: "";
       position: absolute;
       left: 0;
       bottom: 0;
 
-      width: 100vw; /* extend to viewport right edge */
-      height: 2px;  /* thin line */
+      width: 100vw;       /* extend to viewport right edge */
+      height: 2px;        /* thinner */
 
       background: linear-gradient(
         to right,
@@ -93,6 +95,7 @@
         rgba(255,255,255,0) 100%
       );
 
+      /* subtle glow */
       box-shadow:
         0 0 10px rgba(255,255,255,0.18),
         0 0 22px rgba(160,220,255,0.08);
@@ -103,6 +106,7 @@
       animation: lineIn 900ms cubic-bezier(.2,.9,.2,1) 120ms forwards;
     }
 
+    /* Horizon shadow just under the line (soft depth) */
     .jumbotron.full-header h1::before {
       content: "";
       position: absolute;
@@ -120,13 +124,13 @@
       );
 
       filter: blur(6px);
-
       transform-origin: left center;
       transform: scaleX(0);
       opacity: 0;
       animation: lineIn 900ms cubic-bezier(.2,.9,.2,1) 160ms forwards;
     }
 
+    /* Respect reduced-motion */
     @media (prefers-reduced-motion: reduce) {
       .jumbotron.full-header h1::after,
       .jumbotron.full-header h1::before {
@@ -136,82 +140,51 @@
       }
     }
 
-    /* ===== CONTENT ALIGNMENT (match header) ===== */
+    /* ===== PROJECTS SECTION ===== */
     section { padding: 60px 0; }
 
-    .about-section { padding-top: 45px; }
+    /* Make content align with header left edge */
+    .work-section {
+      padding-top: 45px; /* a bit tighter below header */
+    }
 
-    .about-wrap {
+    .work-wrap {
       max-width: 980px;
-      margin-left: var(--page-pad);
+      margin-left: var(--page-pad); /* align left edge with header */
       margin-right: auto;
-      padding-bottom: 40px;
+      padding-bottom: 80px;
     }
 
-    /* Profile pic */
-    .profile-pic {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-    }
-
-    /* Cards */
-    .story-card {
+    .work-card {
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 6px;
-      background: #fff;
-      padding: 30px;
+      overflow: hidden;
+      background: #ffffff;
+      color: #333333;
       box-shadow: 0 8px 30px rgba(0,0,0,0.35);
-      margin-bottom: 30px;
-      color: #333;
+      margin-bottom: 50px;
+      transition: transform 0.25s ease;
     }
+    .work-card:hover { transform: translateY(-4px); }
 
-    /* Replace old solid underline with the same "horizon" vibe (subtle) */
-    .story-card h2 {
-      position: relative;
-      display: inline-block;
-      padding-bottom: 10px;
-      margin-top: 0;
-      margin-bottom: 20px;
-      font-weight: 600;
-      border-bottom: none; /* override your previous border-bottom */
-    }
-
-    .story-card h2::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-
+    .work-img {
       width: 100%;
-      height: 2px;
-
-      background: linear-gradient(
-        to right,
-        rgba(28,95,163,0.95) 0%,
-        rgba(28,95,163,0.55) 70%,
-        rgba(28,95,163,0) 100%
-      );
+      max-height: 340px;
+      object-fit: cover;
+      display: block;
     }
 
-    .skill-tag {
+    .work-body { padding: 22px; }
+
+    .tag {
       display: inline-block;
-      padding: 6px 12px;
+      padding: 4px 10px;
       border: 1px solid #ddd;
       border-radius: 20px;
-      margin: 5px 6px 5px 0;
-      font-size: 13px;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      font-size: 12px;
       background: #f8f8f8;
-      color: #333;
-    }
-
-    .story-card h4 {
-      margin-top: 18px;
-      margin-bottom: 10px;
-      font-weight: 600;
     }
 
     footer {
@@ -225,15 +198,14 @@
       :root { --page-pad: 16px; }
       section { padding: 40px 0; }
       .jumbotron.full-header h1 { font-size: 36px; }
-      .about-wrap { max-width: none; margin-right: var(--page-pad); }
-      .profile-pic { margin-bottom: 15px; }
+      .work-wrap { max-width: none; margin-right: var(--page-pad); }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ================= NAVBAR ================= -->
+  <!-- NAVBAR -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -242,20 +214,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Portfolio</a>
+        <a class="navbar-brand" href="index.html#home">Portfolio</a>
       </div>
 
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
           <li><a href="index.html#home">Home</a></li>
-          <li class="active"><a href="#">About</a></li>
-          <li><a href="work.html#work">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li class="active"><a href="#">Work</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener" aria-label="GitHub profile">
+            <a href="https://github.com/EduardoPCRibeiro" target="_blank" rel="noopener" aria-label="Eduardo Ribeiro GitHub Profile">
               <span class="glyphicon glyphicon-link" aria-hidden="true"></span> GitHub
             </a>
           </li>
@@ -264,92 +236,66 @@
     </div>
   </nav>
 
-  <!-- ============== FULL WIDTH HEADER (LEFT) ============== -->
+  <!-- FULL WIDTH HEADER -->
   <section class="jumbotron full-header">
-    <h1>About Me</h1>
+    <h1>Work</h1>
   </section>
 
-  <!-- ================= CONTENT ================= -->
-  <section class="about-section">
-    <div class="about-wrap">
+  <!-- PROJECTS -->
+  <section class="work-section">
+    <div class="work-wrap">
 
-      <div class="story-card">
-        <h2>Academic Background</h2>
-        <p></p>
-
-        <p>
-          I started my path in Geology in Lisbon, where I obtained my bachelors degree, I got in contact with geophysics during my 3rd year
-          which made move to Denmark in 2019 to pursue a Masters focused on seismic. Ever since I have been involved in offshore projects, starting
-          with my masters degree where I worked with offshore 3D seismic in the Danish Central Graben and later on when I applied
-          seismic inversion for geotechnical properties with SolidGround.
-        </p>
-
-        <p>
-          Now I work mostly with sonar data for offshore wind projects, where I am in charge of managing, processing, reporting and presenting
-          finds in data. I have been working mostly in the Baltic and North Sea. I
-        </p>
-      </div>
-
-      <div class="story-card">
-        <h2>Interests</h2>
-        <div>
-          <span class="skill-tag">Geophysics</span>
-          <span class="skill-tag">Oceanography</span>
-          <span class="skill-tag">Programing</span>
-          <span class="skill-tag">GIS</span>
-          <span class="skill-tag">Marine Species Conservation</span>
+      <div class="work-card">
+        <img
+          src="images/UNESCO_Derived.jpeg"
+          class="work-img img-responsive"
+          alt="Map of derived ocean sound speed calculated from CTD profiles"
+          loading="lazy">
+        <div class="work-body">
+          <h2>Deriving Sound Speed from CTD Profiles</h2>
+          <p>Compare multiple sound-speed equations and generate mapped outputs from open-source CTD data.</p>
+          <div>
+            <span class="tag">Python</span>
+            <span class="tag">CTD</span>
+            <span class="tag">GIS</span>
+            <span class="tag">Oceanography</span>
+          </div>
+          <br>
+          <a class="btn btn-primary" href="P0001_CTD_Derived_Speed.html">View details</a>
         </div>
       </div>
 
-      <div class="story-card">
-        <h2>Skills</h2>
-
-        <h4>Programming & Databases</h4>
-        <div>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">PostgreSQL</span>
-        </div>
-
-        <h4>GIS</h4>
-        <div>
-          <span class="skill-tag">QGIS</span>
-          <span class="skill-tag">ARCGIS</span>
-          <span class="skill-tag">PostGIS</span>
-        </div>
-
-        <h4>Geophysical / Hydrographic Software</h4>
-        <div>
-          <span class="skill-tag">AUTOCLEAN</span>
-          <span class="skill-tag">SONARWIZ</span>
-          <span class="skill-tag">QIMERA</span>
-          <span class="skill-tag">FMGT</span>
-          <span class="skill-tag">QINSY</span>
-          <span class="skill-tag">PALEOSCAN</span>
-        </div>
-      </div>
-
-      <div class="story-card">
-        <h2>Personal Interests</h2>
-        <div>
-          <span class="skill-tag">Running</span>
-          <span class="skill-tag">Weightlifting</span>
-          <span class="skill-tag">Music writing</span>
-          <span class="skill-tag">Bread Baking</span>
-          <span class="skill-tag">Diving</span>
+      <div class="work-card">
+        <img
+          src="images/P0002/CalCOFI_ctd_data_table_UTM_Converted_Mackenzie_cast_2107_001d.png"
+          class="work-img img-responsive"
+          alt="Ray tracing visualization from sound speed profiles using Snell's Law"
+          loading="lazy">
+        <div class="work-body">
+          <h2>Computing Ray Paths from Sound Speed Profiles</h2>
+          <p>Visualizing sound wave refraction using Snell's Law and derived sound speed profiles.</p>
+          <div>
+            <span class="tag">Python</span>
+            <span class="tag">Ray Tracing</span>
+            <span class="tag">Refraction</span>
+            <span class="tag">Hydrography</span>
+          </div>
+          <br>
+          <a class="btn btn-primary" href="P002_WavePath.html">View details</a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= CONTACT CTA ================= -->
-  <section class="container text-center" style="padding-bottom:80px;">
-    <h3>Let’s Connect</h3>
-    <p>Feel free to reach out!</p>
-    <a class="btn btn-primary btn-lg" href="index.html#contact">Contact Me</a>
-  </section>
+  <footer class="container-fluid text-center">
+    <p>© <span id="year"></span> Eduardo Ribeiro</p>
+  </footer>
 
   <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
     // Scroll-based gradient depth (vertical)
     (function () {
       function updateGradient() {
